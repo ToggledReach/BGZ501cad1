@@ -110,12 +110,18 @@ function kopis.damage(humanoid, part)
     if not part.Parent:IsA("Tool") then
         return
     end
+    print('Debug One')
+
     local tool = kopis.getKopis()
     if not tool then
         return
     end
+    print('Debug Two')
+
     local tip = tool:FindFirstChild("Tip", true)
     if part == tip then
+        print('Debug Three')
+        
         local dealDamageEvent = game:GetService("ReplicatedStorage").CombatEvents.DealDamage
         local soundEvent = game:GetService("ReplicatedStorage").CombatEvents.PlaySound
         --local event = tool:FindFirstChild("swordEvent", true)
