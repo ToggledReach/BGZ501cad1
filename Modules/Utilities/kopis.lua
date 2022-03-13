@@ -116,13 +116,23 @@ function kopis.damage(humanoid, part)
     end
     local tip = tool:FindFirstChild("Tip", true)
     if part == tip then
-        local event = tool:FindFirstChild("swordEvent", true)
+        local dealDamageEvent = game:GetService("ReplicatedStorage").CombatEvents.DealDamage
+        local soundEvent = game:GetService("ReplicatedStorage").CombatEvents.PlaySound
+        --local event = tool:FindFirstChild("swordEvent", true)
         if event and tick() - lastHit >= swingSpeeds.cooldown then
-            event:FireServer("dmg", humanoid)
+            --event:FireServer("dmg", humanoid)
+            print('dmg')
+            
+            dealDamageEvent:FireServer(3)
+            soundEvent:FireServer(humanoid)
+            
             lastHit = tick()
         elseif tool:FindFirstChild("SwordEvent") and tick() - lastHit >= swingSpeeds.cooldown then -- Lake Tech
-            event = tool:FindFirstChild("SwordEvent")
-            event:FireServer(humanoid)
+            print('dmg')
+            
+            dealDamageEvent:FireServer(3)
+            soundEvent:FireServer(humanoid)
+            
             lastHit = tick()
         end
     end
